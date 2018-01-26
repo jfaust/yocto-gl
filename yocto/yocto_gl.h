@@ -8479,7 +8479,7 @@ obj_mesh* get_mesh(
 
 // include json for glTF
 #if YGL_GLTFJSON
-#include "json.hpp"
+#include "ext/json.hpp"
 #endif
 
 // -----------------------------------------------------------------------------
