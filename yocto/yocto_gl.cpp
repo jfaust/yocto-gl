@@ -341,6 +341,7 @@ float perlin_turbulence_noise(const vec3f& p, float lacunarity, float gain,
 // -----------------------------------------------------------------------------
 // IMPLEMENTATION FOR IMAGEIO
 // -----------------------------------------------------------------------------
+#if YGL_IMAGEIO
 namespace ygl {
 
 // check hdr extensions
@@ -519,9 +520,12 @@ void resize_image(const image4b& img, image4b& res_img, resize_filter filter,
 
 }  // namespace ygl
 
+#endif // YGL_IMAGEIO
+
 // -----------------------------------------------------------------------------
 // IMPLEMENTATION FOR IMAGE EXAMPLES
 // -----------------------------------------------------------------------------
+#if YGL_IMAGEIO
 namespace ygl {
 
 // Implementation of sunsky modified heavily from pbrt
@@ -691,6 +695,8 @@ image4b make_turbulence_image(int resx, int resy, float scale, float lacunarity,
 }
 
 }  // namespace ygl
+
+#endif // YGL_IMAGEIO
 
 // -----------------------------------------------------------------------------
 // IMPLEMENTATION FOR PATH TRACE
