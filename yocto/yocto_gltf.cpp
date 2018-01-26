@@ -77,6 +77,9 @@ gltf_scene_group* gltf_to_scenes(const glTF* gltf, int scene_idx) {
     // clear asset
     auto scns = new gltf_scene_group();
 
+    scns->extensions_used = gltf->extensionsUsed;
+    scns->extensions_required = gltf->extensionsRequired;
+
     // convert images
     for (auto gtxt : gltf->images) {
         auto txt = new gltf_texture();
@@ -633,6 +636,9 @@ static inline int index(const std::vector<T*>& vec, T* val) {
 glTF* scenes_to_gltf(const gltf_scene_group* scns,
     const std::string& buffer_uri, bool separate_buffers) {
     auto gltf = std::unique_ptr<glTF>(new glTF());
+
+    gltf->extensionsUsed = scns->extensions_used;
+    gltf->extensionsRequired = scns->extensions_required;
 
     // add asset info
     gltf->asset = new glTFAsset();

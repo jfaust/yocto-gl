@@ -709,7 +709,7 @@
 
 // enable image io
 #ifndef YGL_IMAGEIO
-#define YGL_IMAGEIO 0
+#define YGL_IMAGEIO 1
 #endif
 
 // enable glTF

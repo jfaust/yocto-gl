@@ -472,6 +472,9 @@ struct gltf_scene_group {
     std::vector<gltf_animation_group*> animations;
     /// skins
     std::vector<gltf_skin*> skins;
+    /// extensions
+    std::vector<std::string> extensions_used;
+    std::vector<std::string> extensions_required;
 
     /// cleanup
     ~gltf_scene_group();
