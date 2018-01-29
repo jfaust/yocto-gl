@@ -3911,7 +3911,7 @@ inline void serialize_to_json(const glTFProperty& val, json& js) {
 #if YGL_GLTFJSON
     if (!val.extensions.empty())
         serialize_to_json(val.extensions, js["extensions"]);
-    if (!val.extras.is_null()) dump_attr(val.extras, "extras", js);
+    if (!val.extras.is_null()) serialize_to_json(val.extras, js["extras"]);
 #endif
 }
 

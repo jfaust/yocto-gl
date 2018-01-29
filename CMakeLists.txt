@@ -31,6 +31,12 @@ else(YOCTO_OPENGL)
     add_definitions(-DYGL_OPENGL=0)
 endif(YOCTO_OPENGL)
 
+if(YOCTO_GLTFJSON)
+    add_definitions(-DYGL_GLTFJSON=1)
+else(YOCTO_GLTFJSON)
+    add_definitions(-DYGL_GLTFJSON=0)
+endif(YOCTO_GLTFJSON)
+
 if(YOCTO_OPENGL)
     find_package(OpenGL REQUIRED)
     if(APPLE)
