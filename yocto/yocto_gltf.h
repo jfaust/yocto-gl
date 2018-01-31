@@ -253,6 +253,10 @@ struct gltf_material {
     gltf_texture_info* normal_txt_info = nullptr;
 
     // other Parameters ---------------------
+    /// alpha mode
+    glTFMaterialAlphaMode alpha_mode = glTFMaterialAlphaMode::Opaque;
+    /// alpha cutoff
+    float alpha_cutoff = 0.5;
     /// double sided
     bool double_sided = true;
 

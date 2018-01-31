@@ -249,6 +249,8 @@ gltf_scene_group* gltf_to_scenes(const glTF* gltf, int scene_idx) {
                 mat->occlusion_txt_info, false, true);
         }
         mat->double_sided = gmat->doubleSided;
+        mat->alpha_mode = gmat->alphaMode;
+        mat->alpha_cutoff = gmat->alphaCutoff;
         scns->materials.push_back(mat);
     }
 
@@ -809,6 +811,8 @@ glTF* scenes_to_gltf(const gltf_scene_group* scns,
                     mat->occlusion_txt_info->scale;
         }
         gmat->doubleSided = mat->double_sided;
+        gmat->alphaMode = mat->alpha_mode;
+        gmat->alphaCutoff = mat->alpha_cutoff;
         gltf->materials.push_back(gmat);
     }
 
