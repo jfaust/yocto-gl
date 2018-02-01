@@ -1019,10 +1019,32 @@ glTF* scenes_to_gltf(const gltf_scene_group* scns,
         gnode->name = node->name;
         gnode->camera = glTFid<glTFCamera>(index(scns->cameras, node->cam));
         gnode->mesh = glTFid<glTFMesh>(index(scns->meshes, node->msh));
-        gnode->matrix = node->matrix;
-        gnode->translation = node->translation;
-        gnode->rotation = node->rotation;
-        gnode->scale = node->scale;
+
+        // From the GLTF 2.0 spec:
+        /*
+        Any node can define a local space transformation either by supplying a matrix property, or any of translation, rotation, 
+        and scale properties (also known as TRS properties). translation and scale are FLOAT_VEC3 values in the local coordinate system. 
+        rotation is a FLOAT_VEC4 unit quaternion value, (x, y, z, w), in the local coordinate system.
+
+        When matrix is defined, it must be decomposable to TRS. This implies that transformation matrices cannot skew or shear.
+
+        TRS properties are converted to matrices and postmultiplied in the T * R * S order to compose the transformation matrix; 
+        first the scale is applied to the vertices, then the rotation, and then the translation.
+
+        When a node is targeted for animation (referenced by an animation.channel.target), only TRS properties may be present; 
+        matrix will not be present.
+        */
+
+        // So... either matrix *or* TRS may be defined but not both. Because of the last sentence, we may as well
+        // decompose the matrix here and just always output TRS.
+
+        auto matrix = node->local_xform();
+        vec3f translation, scale;
+        quat4f rotation;
+        decompose_mat4f(matrix, translation, rotation, scale);
+        gnode->translation = translation;
+        gnode->rotation = rotation;
+        gnode->scale = scale;
         gnode->weights = node->morph_weights;
         gltf->nodes.push_back(gnode);
     }
