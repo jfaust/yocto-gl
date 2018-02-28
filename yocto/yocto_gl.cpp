@@ -6990,6 +6990,7 @@ void print_info(const scene* scn) { _impl_scn::print_info(scn); }
 // -----------------------------------------------------------------------------
 // IMPLEMENTATION FOR SHAPE EXAMPLES
 // -----------------------------------------------------------------------------
+#if YGL_TEST_SCENES
 namespace ygl {
 
 // Make a sphere. This is not watertight.
@@ -9006,6 +9007,7 @@ scene* make_test_scene(test_scene_type otype) {
 }
 
 }  // namespace ygl
+#endif // YGL_TEST_SCENES
 
 #if YGL_OPENGL
 

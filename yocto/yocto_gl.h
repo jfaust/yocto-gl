@@ -7843,6 +7843,7 @@ inline void overlap_instance_bounds(const scene* scn1, const scene* scn2,
 // -----------------------------------------------------------------------------
 // EXAMPLE SCENES
 // -----------------------------------------------------------------------------
+#if YGL_TEST_SCENES
 namespace ygl {
 
 /// Makes the Cornell Box scene
@@ -7907,6 +7908,7 @@ inline const vector<pair<string, test_scene_type>>& test_scene_names() {
 scene* make_test_scene(test_scene_type stype);
 
 }  // namespace ygl
+#endif // YGL_TEST_SCENES
 
 // -----------------------------------------------------------------------------
 // PATH TRACING
