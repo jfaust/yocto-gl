@@ -6545,6 +6545,13 @@ vec3f sample_ggx(float rs, const vec2f& rn);
 /// Evaluates the GGX pdf.
 float sample_ggx_pdf(float rs, float ndh);
 
+/// @}
+
+}  // namespace ygl
+#endif // YGL_TEST_SCENES
+
+namespace ygl {
+
 /// Triangle filter. Ppublic domain from stb_image_resize.
 inline float filter_triangle(float x) {
     x = (float)fabs(x);
@@ -6573,10 +6580,7 @@ inline float filter_mitchell(float x) {
     return 0.0f;
 }
 
-/// @}
-
-}  // namespace ygl
-#endif // YGL_TEST_SCENES
+} // namespace ygl
 
 // -----------------------------------------------------------------------------
 // PATH TRACING
