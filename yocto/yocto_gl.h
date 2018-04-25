@@ -7158,7 +7158,7 @@ struct glTFid {
 struct glTFProperty {
 #if YGL_GLTFJSON
     /// Extensions.
-    map<string, nlohmann::json> extensions = {};
+    std::map<std::string, nlohmann::json> extensions = {};
     /// Extra data.
     nlohmann::json extras = {};
 #endif
