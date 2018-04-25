@@ -1042,7 +1042,7 @@ glTF* scenes_to_gltf(const gltf_scene_group* scns,
         auto matrix = node->local_xform();
         vec3f translation, scale;
         quat4f rotation;
-        decompose_mat4f(matrix, translation, rotation, scale);
+        std::tie(translation, rotation, scale) = decompose_frame(mat_to_frame(matrix));
         gnode->translation = translation;
         gnode->rotation = rotation;
         gnode->scale = scale;

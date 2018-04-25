@@ -2987,7 +2987,7 @@ inline quat<T, 4> rotation_quat(const mat<T, 3>& m_) {
 /// Decompose an affine matrix into translation, rotation, scale.
 /// Assumes there is no shear.
 template <typename T>
-inline std::tuple<vec<T, 3>, mat<T, 3>, vec<T, 3>> decompose_frame(
+inline std::tuple<vec<T, 3>, mat<T, 3>, vec<T, 3>> decompose_frame_tms(
     const frame<T, 3>& m) {
     return {m.o, {normalize(m.x), normalize(m.y), normalize(m.z)},
         {length(m.x), length(m.y), length(m.z)}};
@@ -3001,7 +3001,7 @@ inline std::tuple<vec<T, 3>, quat<T, 4>, vec<T, 3>> decompose_frame(
     auto pos = vec<T, 3>();
     auto rot = mat<T, 3>();
     auto scl = vec<T, 3>();
-    tie(pos, rot, scl) = decompose_frame(m);
+    std::tie(pos, rot, scl) = decompose_frame_tms(m);
     return {pos, rotation_quat(rot), scl};
 }
 /// Decompose an affine matrix into translation, rotation, scale.
